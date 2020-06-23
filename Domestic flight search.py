@@ -63,7 +63,11 @@ def flyapi(dcity: str, acity: str, date: str):
     response = requests.post(url, data=json.dumps(
         request_payload), headers=headers).text
     # 获取json文件
-    routeList = json.loads(response)["data"].get('routeList')
+    try:
+        routeList = json.loads(response)["data"].get('routeList')
+    except KeyError:
+        print("\n=========未查询到航班数据！============")
+        return
     # 建立表格输出数据
     table = PrettyTable(["航空公司", "航班", "机型", "起飞时间-->到达时间", "准点率", "最低价格"])
     table.padding_width = 1
