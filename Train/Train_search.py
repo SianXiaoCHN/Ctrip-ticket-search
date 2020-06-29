@@ -21,7 +21,7 @@ def searchTrain(dcity: str, acity: str, date: str):
     soup = BeautifulSoup(r.text, 'html.parser')
     table = PrettyTable(["车次", "发车时间", "到达时间", "用时", "坐席", "票价", "余票"])
     table.padding_width = 1
-    trains = soup.jsonresult.data.contents[:-1]  # 最后一项是extendinfo
+    trains = soup.jsonresult.data.find_all('trainlist')
     if not trains:
         print("\n=========未查询到车次数据！============")
         return
