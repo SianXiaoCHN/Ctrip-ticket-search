@@ -49,11 +49,16 @@ def searchTrain(dcity: str, acity: str, date: str):
 
 
 if __name__ == "__main__":
-    print('输入起点、终点、日期，中间以空格分开，举例：')
-    print('北京 上海 20200629')
-    try:
-        dcity,acity,date = input().split(' ')
-    except:
-        print('输入内容有误')
+    while True:
+        print('输入起点、终点、日期，以空格分开，举例：')
+        print('北京 上海 20200629')
+        print('直接回车即可退出')
+        raw_data = input()
 
-    searchTrain(dcity, acity, date)
+        if not raw_data:
+            break
+        try:
+            dcity, acity, date = raw_data.split(' ')
+            searchTrain(dcity, acity, date)
+        except:
+            print('输入内容有误')

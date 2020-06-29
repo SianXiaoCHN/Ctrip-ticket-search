@@ -3,6 +3,7 @@ import json
 
 import requests
 from prettytable import PrettyTable
+from os import system
 
 with open('Domestic_Airports.json', 'r', encoding='utf-8') as f:
     city = json.load(f)
@@ -82,36 +83,41 @@ def flyapi(dcity: str, acity: str, date: str):
 
 def proc1():
     while True:
-        dcity = input('请输入起点（北京）： ')
-        acity = input('请输入终点（上海）： ')
-        date1 = input('请输入起始日期（20200202）： ')
-        date2 = input('请输入结束日期（20200204）： ')
-        # dcity = '天津'
-        # acity = '深圳'
-        # date = '20190928'
+        print('请输入起点、终点、起始日期、结束日期，以空格分开')
+        print('北京 上海 20200629 20200705')
+        print('回车键退出')
 
-        begin = datetime.date(int(date1[0:4]), int(
-            date1[4:6]), int(date1[6:8]))
-        end = datetime.date(int(date2[0:4]), int(date2[4:6]), int(date2[6:8]))
-        for i in range((end - begin).days+1):
-            day = begin + datetime.timedelta(days=i)
-            flyapi(dcity, acity, day.isoformat().replace('-', ''))
+        try:
+            dcity, acity, date1, date2 = input().split(' ')
+            system('cls')
+            begin = datetime.date(int(date1[0:4]), int(
+                date1[4:6]), int(date1[6:8]))
+            end = datetime.date(int(date2[0:4]), int(
+                date2[4:6]), int(date2[6:8]))
+            for i in range((end - begin).days+1):
+                day = begin + datetime.timedelta(days=i)
+                flyapi(dcity, acity, day.isoformat().replace('-', ''))
+        except:
+            print('输入内容有误')
 
 
 def proc2():
     while True:
-        dcity = input('请输入起点（北京）： ')
-        acity = input('请输入终点（上海）： ')
-        date1 = input('请输入去程日期（20200202）： ')
-        date2 = input('请输入返程日期（20200204）： ')
-        # dcity = '天津'
-        # acity = '深圳'
-        # date = '20190928'
-        flyapi(dcity, acity, date1)
-        flyapi(acity, dcity, date2)
+        print('请输入起点、终点、起始日期、返程日期，以空格分开')
+        print('北京 上海 20200629 20200705')
+        print('回车键退出')
+
+        try:
+            dcity, acity, date1, date2 = input().split(' ')
+            system('cls')
+            flyapi(dcity, acity, date1)
+            flyapi(acity, dcity, date2)
+        except:
+            print('输入内容有误')
 
 
 if __name__ == "__main__":
     print('1: 一段时间内单程票价')
     print('2: 往返两日票价')
+    system('cls')
     eval('proc'+input('请输入需求：')+'()')
