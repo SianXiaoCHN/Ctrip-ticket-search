@@ -87,8 +87,12 @@ def proc1():
         print('北京 上海 20200629 20200705')
         print('回车键退出')
 
+        raw_data = input()
+        if not raw_data:
+            break
+
         try:
-            dcity, acity, date1, date2 = input().split(' ')
+            dcity, acity, date1, date2 = raw_data.split(' ')
             system('cls')
             begin = datetime.date(int(date1[0:4]), int(
                 date1[4:6]), int(date1[6:8]))
@@ -107,8 +111,12 @@ def proc2():
         print('北京 上海 20200629 20200705')
         print('回车键退出')
 
+        raw_data = input()
+        if not raw_data:
+            break
+
         try:
-            dcity, acity, date1, date2 = input().split(' ')
+            dcity, acity, date1, date2 = raw_data.split(' ')
             system('cls')
             flyapi(dcity, acity, date1)
             flyapi(acity, dcity, date2)
