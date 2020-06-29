@@ -4,7 +4,7 @@ import json
 import requests
 from prettytable import PrettyTable
 
-with open('Domestic Airports.json', 'r', encoding='utf-8') as f:
+with open('Domestic_Airports.json', 'r', encoding='utf-8') as f:
     city = json.load(f)
 
 
